@@ -145,7 +145,14 @@ async def set_correct_option(message: types.Message):
     user_tests[message.from_user.id]['state'] = 'waiting_for_question'
     user_tests[message.from_user.id]['question_index'] += 1
 
-    await message.answer(f"Yangi savolni kiriting chiqish uchun /finish komandasini bosing (Savol {user_tests[message.from_user.id]['question_index']}):")
+    button_finish = KeyboardButton(text="Testni tugatish")
+
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[[button_finish]],
+        resize_keyboard=True  # Klaviaturani avtomatik ravishda o'lchamini o'zgartirish
+    )
+
+    await message.answer(f"Yangi savolni kiriting  (Savol {user_tests[message.from_user.id]['question_index']}):", reply_markup=keyboard)
 
 
 score = {}
