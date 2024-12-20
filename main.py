@@ -224,7 +224,15 @@ async def check_answer(message: types.Message):
         await message.answer(f"Savol: {question_text}\n\nA: {option_a}\nB: {option_b}\nC: {option_c}\nD: {option_d}", reply_markup=keyboard)
     else:
         del user_test_progress[user_id]
-        await message.answer("Barcha savollar tugadi!", reply_markup=types.ReplyKeyboardRemove())
+        button_start = KeyboardButton(text="Testni boshlash")
+        button_create_test = KeyboardButton(text="Test yaratish")
+        button_help = KeyboardButton(text="Yordam")
+
+        keyboard = ReplyKeyboardMarkup(
+                keyboard=[[button_start, button_create_test, button_help]],
+                resize_keyboard=True  # Klaviaturani avtomatik ravishda o'lchamini o'zgartirish
+                )
+        await message.answer("Barcha savollar tugadi!", reply_markup=keyboard)
 
 # Foydalanuvchi javobi
 @dp.message(lambda message: message.text.lower() == "exit")
