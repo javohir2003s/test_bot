@@ -153,7 +153,6 @@ score = {}
 # Testni boshlash komandasi
 @dp.message(lambda message: message.text == "Testni boshlash")
 async def start_test(message: types.Message):
-    await message.answer("Hello")
     # Tasodifiy savolni olish
     cursor.execute("SELECT id, question, option1, option2, option3, option4, correct_option FROM questions ORDER BY random() LIMIT 1")
     row = cursor.fetchone()
