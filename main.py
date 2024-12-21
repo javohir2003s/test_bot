@@ -46,6 +46,10 @@ async def start_handler(message: types.Message):
     # Foydalanuvchiga salomlashish va klaviaturani yuborish
     await message.answer("Salom! Botga xush kelibsiz:", reply_markup=keyboard)
 
+@dp.message(lambda message: message.text == 'Yordam')
+async def help(mesage: types.Message):
+    await mesage.answer("Admin bilan bog'lanish @pozitiv_bola")
+
 @dp.message(lambda message: message.text == 'Testni tugatish')
 async def finish_test(message: types.Message):
     if message.from_user.id in user_tests:
@@ -232,7 +236,7 @@ async def check_answer(message: types.Message):
                 keyboard=[[button_start, button_create_test, button_help]],
                 resize_keyboard=True  # Klaviaturani avtomatik ravishda o'lchamini o'zgartirish
                 )
-        await message.answer("Barcha savollar tugadi!", reply_markup=keyboard)
+        await message.answer("Barcha savollar tugadi!", reply_markup=keyboard   )
 
 # Foydalanuvchi javobi
 @dp.message(lambda message: message.text.lower() == "exit")
